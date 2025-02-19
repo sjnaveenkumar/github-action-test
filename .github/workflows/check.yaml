@@ -1,8 +1,11 @@
 name: PR Title Check
 
 on:
-  pull_request:
-    branches: [main, develop] # Or your target branches
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
   check_title:
