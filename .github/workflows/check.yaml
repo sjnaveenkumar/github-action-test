@@ -15,23 +15,24 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check PR title
-        id: check_title # Assign an ID to the step
+        id: check_title
+        shell: bash  # Explicitly set the shell to bash
         run: |
           PR_TITLE="${{ github.event.pull_request.title }}"
           echo "PR Title: ${PR_TITLE}"
 
-          # Regular expression to match the expected format
+          # Improved Regular Expression (no need for quotes around $REGEX)
           REGEX="^(GSA|CNME|MA)-\\d+ - .+"
 
-          if [[ ! "${PR_TITLE}" =~ $REGEX ]]; then
+          if [[ ! "$PR_TITLE" =~ $REGEX ]]; then  # Quotes around $PR_TITLE are essential
             echo "::error::PR title '${PR_TITLE}' does not match the required format (GSA|CNME|MA)-XXXX - Description."
-            exit 1 # Fail the workflow
+            exit 1
           else
             echo "::notice::PR title '${PR_TITLE}' matches the required format."
           fi
 
       - name: Output Result
-        if: always() # Always run this step
+        if: always()
         run: |
           if steps.check_title.outcome == 'failure'; then
             echo "PR Title Check Failed"
