@@ -1,41 +1,21 @@
 name: PR Title Check
 
 on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - synchronize
+  pull_request:
+    types: [opened, edited, synchronize]
 
 jobs:
-  check_title:
+  check-pr-title:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Check PR title
-        id: check_title
-        shell: bash  # Explicitly set the shell to bash
-        run: |
-          PR_TITLE="${{ github.event.pull_request.title }}"
-          echo "PR Title: ${PR_TITLE}"
-
-          # Improved Regular Expression (no need for quotes around $REGEX)
-          REGEX="^(GSA|CNME|MA)-\\d+ - .+"
-
-          if [[ ! "$PR_TITLE" =~ $REGEX ]]; then  # Quotes around $PR_TITLE are essential
-            echo "::error::PR title '${PR_TITLE}' does not match the required format (GSA|CNME|MA)-XXXX - Description."
-            exit 1
-          else
-            echo "::notice::PR title '${PR_TITLE}' matches the required format."
-          fi
-
-      - name: Output Result
-        if: always()
-        run: |
-          if steps.check_title.outcome == 'failure'; then
-            echo "PR Title Check Failed"
-          else
-            echo "PR Title Check Passed"
-          fi
+  - name: Validate PR title format
+    run: |
+      PR_TITLE="${{ github.event.pull_request.title }}"
+      if [[ ! "$PR_TITLE" =~ ^([A-Z]{2,5}_[0-9]+_.+|MERGE_.+)$ ]]; then
+        echo "❌ PR title does not match the required format!"
+        echo "Allowed formats:"
+        echo "1️⃣ XX_123_Description (where XX is 2-5 uppercase letters, 123 is any number, and Description is any text)"
+        echo "2️⃣ MERGE_Description"
+        exit 1
+      fi
