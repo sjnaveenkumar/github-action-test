@@ -12,7 +12,7 @@ jobs:
         id: validate
         run: |
           PR_TITLE="${{ github.event.pull_request.title }}"
-          if [[ ! "$PR_TITLE" =~ ^([A-Za-z]{2,5}|[Mm][Ee][Rr][Gg][Ee])\s*-\s*(\d+\s+.*|.+)$ ]]; then
+          if [[ ! "$PR_TITLE" =~ ^([Mm][Ee][Rr][Gg][Ee])|([A-Za-z]{2,5})\s*-\s*(\d+\s+.*|.+)$ ]]; then
             echo "❌ PR title does not match the required format!" > result.txt
             echo "Allowed formats:" >> result.txt
             echo "1. MA-1234 Description" >> result.txt
