@@ -2,7 +2,7 @@ name: PR Title Check
 
 on:
   pull_request:
-    branches: [main, develop] # Or your target branches
+    types: [opened, edited, synchronize]
 
 jobs:
   check_title:
