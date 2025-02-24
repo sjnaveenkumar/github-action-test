@@ -11,7 +11,7 @@ jobs:
       - name: Validate PR title format
         run: |
           PR_TITLE="${{ github.event.pull_request.title }}"
-          if [[ ! "$PR_TITLE" =~ ^([A-Za-z]{2,5}|[Mm][Ee][Rr][Gg][Ee])\s*-\s*(\d+\s+.*|.+)$ ]]; then
+          if [[ ! "$PR_TITLE" =~ ^(Merge|[A-Za-z]{2,5}-\d+\s+.*)$ ]]; then
             echo "❌ PR title does not match the required format!"
             echo "Allowed formats:"
             echo "1️⃣ XX_123_Description (where XX is 2-5 uppercase letters, 123 is any number, and Description is any text)"
