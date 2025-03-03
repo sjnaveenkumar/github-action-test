@@ -16,7 +16,7 @@ jobs:
           spaceId: '131077'
           status: 'current'
           title: "Release: ${{ github.ref_name }}"
-          parentId: '131351'
+          parentId: '327738'
           ConfluenceBaseUrl: 'https://eyalty.atlassian.net'
           repoOwner: ${{ github.repository_owner }}
           repoName: ${{ github.event.repository.name }}
