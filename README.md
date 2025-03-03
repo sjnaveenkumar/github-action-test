@@ -9,4 +9,4 @@ PR check title
 
 Check 
 
-Release note check
+Release note check 1.0
