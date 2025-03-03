@@ -8,3 +8,5 @@ Release 2.0
 PR check title
 
 Check 
+
+Release note check
