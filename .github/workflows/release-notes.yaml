@@ -6,8 +6,7 @@ on:
 
 jobs:
   create-confluence-page:
-    runs-on: ubuntu-latest
-    needs: [ release ]
+    runs-on: ubuntu-latest    
     steps:
       - name: Publish to Confluence Action
         uses: Gershon-A/publish-release-to-confluence@v1.0.4
