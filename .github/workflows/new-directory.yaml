@@ -26,7 +26,5 @@ jobs:
         run: |
           echo "Before"
           pwd 
-          cd ../
-          echo "After"
           rm -rf ${{ github.ref_name }}
           echo "Removed"
