@@ -1,0 +1,17 @@
+name: Clone with Branch Name
+
+on: [push, pull_request]
+
+jobs:
+  checkout_with_branch:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          path: ${{ github.ref_name }} # Optional: Specify the path to clone into
+
+      - name: List Files
+        run: |
+          ls -la ${{ github.ref_name }}
