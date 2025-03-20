@@ -18,10 +18,11 @@ jobs:
   clean_up:
     name: Cleanup
     if: ${{ always() }}
+    needs: checkout_with_branch
     runs-on: 
       - self-hosted
     steps:
       - name: CleanUp
         run: |
           cd ../
-          rm -r ${{ github.ref_name }}
+          rm -rf ${{ github.ref_name }}
