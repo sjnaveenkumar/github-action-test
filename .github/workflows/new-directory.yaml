@@ -24,4 +24,4 @@ jobs:
       - name: CleanUp
         run: |
           cd ../
-          rm -r *
+          rm -r ${{ github.ref_name }}
