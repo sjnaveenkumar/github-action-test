@@ -15,6 +15,8 @@ jobs:
       - name: List Files
         run: |
           ls -la ${{ github.ref_name }}
+      - name: print Variable name
+        run: echo "My email is ${{vars.CONFLUENCE_EMAIL}}"
   clean_up:
     name: Cleanup
     if: ${{ always() }}
