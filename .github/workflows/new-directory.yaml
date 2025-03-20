@@ -15,3 +15,13 @@ jobs:
       - name: List Files
         run: |
           ls -la ${{ github.ref_name }}
+  clean_up:
+    name: Cleanup
+    if: ${{ always() }}
+    runs-on: 
+      - self-hosted
+    steps:
+      - name: CleanUp
+        run: |
+          cd ../
+          rm -r *
