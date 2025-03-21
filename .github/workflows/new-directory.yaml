@@ -9,8 +9,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
-          path: ${{ github.ref_name }} # Optional: Specify the path to clone into
+          path: ./${{ github.ref_name }} # Optional: Specify the path to clone into
 
       - name: List Files
         run: |
